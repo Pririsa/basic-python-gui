@@ -55,7 +55,7 @@ def data_calculation():
 
 GUI = Tk()
 GUI.geometry('600x700')
-GUI.title('โปรแกรมของลุง')
+GUI.title("Durian's Calculator V0.0.1")
 
 file = PhotoImage(file='durian.png')
 IMG = Label(GUI,image=file,text='')
@@ -64,7 +64,7 @@ IMG.pack()
 L1 = Label(GUI,text='โปรแกรมคำนวณทุเรียน',font=('Angsana New',30,'bold'),fg='green')
 L1.pack() # .place(x,y) , .grid(row=0,column=0)
 
-L2 = Label(GUI,text='กรุณากรอกจำนวนทุเรียน',font=('Angsana New',20))
+L2 = Label(GUI,text='กรุณากรอกจำนวนทุเรียน (กก.)',font=('Angsana New',20))
 L2.pack()
 
 v_quantity = StringVar() #ตำแหน่งตัวแปรที่ใช้เก็บข้อมูลของช่องกรอก
@@ -72,15 +72,12 @@ v_quantity = StringVar() #ตำแหน่งตัวแปรที่ใช
 E1 = ttk.Entry(GUI,textvariable=v_quantity,font=('impact',30))
 E1.pack()
 
-file_name = 'data.txt'
-
 def Calculate(event=None):
     quantity = v_quantity.get()
     price = 100
     print('จำนวน', float(quantity) * price)
     cal = float(quantity) * price
-    
-    # append_file(quantity, cal)
+
     write_csv([timestamp('thai'), quantity, cal])
     cal_result = data_calculation()
 
@@ -111,6 +108,7 @@ def sum_data(event):
     messagebox.showinfo(title, message)
 
 GUI.bind('<F1>', sum_data)
+GUI.bind('<F2>', sum_data)
 
 
 GUI.mainloop()
